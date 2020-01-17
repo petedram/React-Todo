@@ -1,7 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
+import "../src/styles.css";
+
 
 
 
@@ -15,7 +16,7 @@ const todoItems = [
 {
   task: 'pick up milk',
   id: 123457,
-  complete: false
+  completed: true
 }
 ];
 
@@ -29,11 +30,12 @@ state = {
 };
 
 addNewItem = newTaskName => {
+  console.log('new item triggered');
   const newState = {
     ...this.state,
-    todoItems: [
+    todoList: [
       ...this.state.todoList,
-      {task: newTaskName, complete: false, id: Date.now(), }
+      {task: newTaskName,  id: Date.now(), completed: false }
     ]
   };
   this.setState(newState);
@@ -48,7 +50,7 @@ toggleComplete = id => {
       if (item.id === id) {
         return {
           ...item,
-          complete: !item.complete
+          completed: !item.completed
         };
       }
       return item;
